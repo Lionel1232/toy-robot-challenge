@@ -27,4 +27,3 @@ def test_valid_position_returns_true_for_valid_position(x, y):
     position = Position(x, y, Direction.NORTH)
 
     assert table.valid_position(position) is True
-    assert False is True
