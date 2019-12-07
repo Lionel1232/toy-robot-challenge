@@ -8,7 +8,8 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - uses: actions/checkout@v1
+    - name: Checkout source toy-robot-challenge source code
+      uses: actions/checkout@v1
     - name: Set up Python 3.8
       uses: actions/setup-python@v1
       with:
@@ -17,11 +18,13 @@ jobs:
       run: pip install tox
     - name: Run tests using tox
       run: tox
-    - uses: actions/upload-artifact@v1
+    - name: Upload code coverage report
+      uses: actions/upload-artifact@v1
       with:
         name: coverage-report
         path: htmlcov
-    - uses: actions/upload-artifact@v1
+    - name: Upload pytest report
+      uses: actions/upload-artifact@v1
       if: always()
       with:
         name: pytest-report
