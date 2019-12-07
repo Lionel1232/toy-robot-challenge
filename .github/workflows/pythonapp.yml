@@ -21,5 +21,7 @@ jobs:
       with:
         name: coverage-report
         path: htmlcov
+    - uses: actions/upload-artifact@v1
+      with:
         name: pytest-report
         path: unittest-report
