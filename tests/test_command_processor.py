@@ -30,6 +30,7 @@ def test_process_ignores_invalid_command(caplog, mock_robot):
     assert "Detected command as invalid. Terminating command execution." in str(
         caplog.records
     )
+    assert True is False
 
 
 @pytest.mark.parametrize(
