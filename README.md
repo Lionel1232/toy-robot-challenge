@@ -47,7 +47,7 @@ Options:
 
 ### Input File Format
 
-The input file should list individual commands seperated with a newline as shown in the [COMMAND_FILE.txt](command_file.txt) file included with this project. i.e
+The input file should list individual commands seperated with a newline as shown in the [sample_command_sequence.txt](sample_command_sequence.txt) file included with this project. i.e
 
 ```
 PLACE 1,1,NORTH
@@ -65,5 +65,5 @@ REPORT
 Tests are orchestrated using [Tox](https://tox.readthedocs.io/en/latest/), install this tool using `pip install tox` if you do not already have it.
 
 - To run the test suite, execute the `tox` command.
-- This will execute tests using [pytest](https://docs.pytest.org/en/latest/), creating a virtualenvironment containing all required dependencies if one does not already exist.
+- This will execute tests using [pytest](https://docs.pytest.org/en/latest/), creating a virtual environment containing all required dependencies if one does not already exist.
 - If you wish to supply additional arguments when running pytest, you can supply them as additional positional arguments i.e `tox -e py38 -- -x -k test_robot`.
