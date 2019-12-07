@@ -17,3 +17,7 @@ jobs:
       run: pip install tox
     - name: Run tests using tox
       run: tox
+    - uses: actions/upload-artifact@v1
+      with:
+        name: coverage-report
+        path: htmlcov
