@@ -1,4 +1,4 @@
-name: Python application
+name: Run pytest, flake8 and coverage
 
 on: [push]
 
