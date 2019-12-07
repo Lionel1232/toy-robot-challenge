@@ -4,13 +4,11 @@ A Python application that simulates a toy robot moving around on a 5 x 5 table.
 
 ## Installation
 
-Clone the github repository
-
-First, clone the project.
+First, clone the project and navigate to the project root.
 
 To install the application using pip:
 
-- From the root of the project, run: `pip install .`.
+- Run: `pip install .`.
 - The application can now be started using the `toy_robot` command.
 
 To install the application for local development:
@@ -18,7 +16,7 @@ To install the application for local development:
 - Create a virtual environment: `python -m venv venv` or `tox`.
 - Activate the environment: `source venv/bin/activate`.
 - Install the dependencies: `pip install requirements.txt`.
-- To run the application execute `python -m toy_robot_challenge.cli` from the project root.
+- To run the application, execute `python -m toy_robot_challenge.cli` from the project root.
 
 ## Usage
 
