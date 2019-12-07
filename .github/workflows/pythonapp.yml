@@ -21,6 +21,5 @@ jobs:
       with:
         name: coverage-report
         path: htmlcov
-      with:
         name: pytest-report
         path: unittest-report
