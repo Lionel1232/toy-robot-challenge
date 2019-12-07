@@ -22,6 +22,7 @@ jobs:
         name: coverage-report
         path: htmlcov
     - uses: actions/upload-artifact@v1
+      if: always()
       with:
         name: pytest-report
         path: unittest-report
