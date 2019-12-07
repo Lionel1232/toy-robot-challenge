@@ -4,8 +4,9 @@ import sys
 import click
 
 from toy_robot_challenge.command_processor import CommandProcessor
-from toy_robot_challenge.robot import Robot
-from toy_robot_challenge.table import Table
+
+from .robot import Robot
+from .table import Table
 
 # setup the root logger
 logger = logging.getLogger()

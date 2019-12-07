@@ -2,7 +2,7 @@ import logging
 import re
 from enum import Enum
 
-from toy_robot_challenge.positioning import Direction, Turn
+from .positioning import Direction, Turn
 
 logger = logging.getLogger(__name__)
 

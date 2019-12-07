@@ -1,7 +1,7 @@
 import copy
 import logging
 
-from toy_robot_challenge.positioning import Direction, Orientation, Position
+from .positioning import Direction, Orientation, Position
 
 logger = logging.getLogger(__name__)
 

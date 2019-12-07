@@ -13,7 +13,7 @@ def test_create_table():
     assert table._width == width
 
 
-@pytest.mark.parametrize("x, y", [(-1, 0), (0, -1), (-1, -1), (6, 5), (5, 6)])
+@pytest.mark.parametrize("x, y", [(-1, 0), (0, -1), (-1, -1), (5, 5), (6, 5), (5, 6)])
 def test_valid_position_returns_false_for_invalid_position(x, y):
     table = Table(5, 5)
     position = Position(x, y, Direction.NORTH)
@@ -21,7 +21,7 @@ def test_valid_position_returns_false_for_invalid_position(x, y):
     assert table.valid_position(position) is False
 
 
-@pytest.mark.parametrize("x, y", [(0, 0), (5, 5), (3, 3)])
+@pytest.mark.parametrize("x, y", [(0, 0), (4, 4), (3, 3)])
 def test_valid_position_returns_true_for_valid_position(x, y):
     table = Table(5, 5)
     position = Position(x, y, Direction.NORTH)
