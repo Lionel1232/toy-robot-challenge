@@ -137,32 +137,22 @@ def test_move_changes_position_of_robot_to_correct_location_for_valid_new_positi
     assert robot._position.orientation.direction == expected_direction
 
 
-@pytest.mark.parametrize(
-    "initial_position, initial_direction, expected_position, expected_direction",
-    [
-        ((0, 0), Direction.NORTH, (0, 1), Direction.NORTH),
-        ((5, 5), Direction.SOUTH, (5, 4), Direction.SOUTH),
-        ((0, 0), Direction.EAST, (1, 0), Direction.EAST),
-        ((2, 2), Direction.WEST, (1, 2), Direction.WEST),
-    ],
-)
-def test_move_does_not_move_robot_robot_for_invalid_new_position(
-    mocker, initial_position, initial_direction, expected_position, expected_direction
-):
+def test_move_does_not_move_robot_robot_for_invalid_new_position(mocker, caplog):
     robot = Robot(mocker.Mock())
-    robot._table.valid_position.return_value = True
-    initial_x, initial_y = initial_position
+    robot._table.valid_position.return_value = False
+    initial_x, initial_y = 0, 0
     starting_position = Position(
-        initial_x, initial_y, mocker.Mock(direction=initial_direction)
+        initial_x, initial_y, mocker.Mock(direction=Direction.SOUTH)
     )
     robot._position = starting_position
 
     robot.move()
 
-    # TODO: test if `valid_position` was actually called with the correct position
-    robot._table.valid_position.assert_called_once()
-    assert (robot._position.x, robot._position.y) == expected_position
-    assert robot._position.orientation.direction == expected_direction
+    assert robot._table.valid_position.called is True
+    assert (robot._position.x, robot._position.y) == (initial_x, initial_y)
+    assert robot._position.orientation.direction == Direction.SOUTH
+    assert "Preventing execution of MOVE command as it would cause "
+    "the robot to fall off the table." in str(caplog.records)
 
 
 def test_move_does_not_change_position_of_robot_if_robot_is_not_placed(mocker):

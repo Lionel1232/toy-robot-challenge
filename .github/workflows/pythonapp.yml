@@ -15,5 +15,5 @@ jobs:
         python-version: "3.8.0"
     - name: Install tox
       run: pip install tox
-    - name: Run tox
+    - name: Run tests using tox
       run: tox
