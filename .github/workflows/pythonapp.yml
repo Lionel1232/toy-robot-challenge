@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - name: Checkout source toy-robot-challenge source code
+    - name: Checkout toy-robot-challenge source code
       uses: actions/checkout@v1
     - name: Set up Python 3.8
       uses: actions/setup-python@v1
