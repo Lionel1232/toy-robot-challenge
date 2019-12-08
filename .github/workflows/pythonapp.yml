@@ -1,4 +1,4 @@
-name: Run pytest, flake8 and coverage
+name: Run pytest, flake8, isort and coverage
 
 on: [push]
 
