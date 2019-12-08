@@ -7,8 +7,8 @@ requirements = [
 
 setup(
     author="Lionel Herman Bersee",
-    author_email="lionel1232@gmail.com",
-    python_requires=">=3",
+    author_email="lionel.h.bersee@gmail.com",
+    python_requires=">=3.8",
     classifiers=[
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
