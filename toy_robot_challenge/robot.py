@@ -37,10 +37,6 @@ class Robot:
         new_position.x += self._position.direction.dx
         new_position.y += self._position.direction.dy
 
-        # TODO: type hinting complains here because new_position is defined as an optional.
-        # we check if new_position is set by calling the _is_placed() method earlier in this
-        # function, but this is not picked up by the (Pyright) linter. Maybe there is a better
-        # way to handle this?
         if self._table.valid_position(new_position):
             self._position = new_position
         else:
