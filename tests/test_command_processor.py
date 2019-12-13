@@ -1,4 +1,5 @@
 import logging
+from toy_robot_challenge.robot import Robot
 
 import pytest
 
@@ -8,7 +9,7 @@ from toy_robot_challenge.positioning import Direction, Turn
 
 @pytest.fixture()
 def mock_robot(mocker):
-    return mocker.Mock()
+    return mocker.create_autospec(Robot, instance=True)
 
 
 def test_create_command_processor(mock_robot):
