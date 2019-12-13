@@ -2,18 +2,15 @@ from toy_robot_challenge.positioning import Direction, Orientation, Position, Tu
 
 
 def test_create_position(mocker):
-    mock_orientation = mocker.Mock()
-    position = Position(1, 1, mock_orientation)
+    position = Position(1, 1, Direction.NORTH)
 
     assert position.x == 1
     assert position.y == 1
-    assert position.orientation == mock_orientation
+    assert position.direction == Direction.NORTH
 
 
 def test_position_string_representation_is_accurate(mocker):
-    mock_orientation = mocker.Mock()
-    mock_orientation.direction.value = "NORTH"
-    position = Position(1, 1, mock_orientation)
+    position = Position(1, 1, Direction.NORTH)
 
     assert str(position) == "1,1,NORTH"
 

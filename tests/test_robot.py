@@ -10,7 +10,6 @@ def test_create_robot(mocker):
 
     assert robot._position is None
     assert robot._table is mock_table
-    assert len(robot._orientations) == 4
 
 
 def test_place_sets_position_for_valid_position_on_table(mocker):
@@ -22,10 +21,9 @@ def test_place_sets_position_for_valid_position_on_table(mocker):
     mock_table.valid_position.return_value = True
 
     robot = Robot(mock_table)
-    robot._orientations = {Direction.NORTH: "fake-orientation"}
     robot.place(1, 1, Direction.NORTH)
 
-    mock_position.assert_called_once_with(1, 1, "fake-orientation")
+    mock_position.assert_called_once_with(1, 1, Direction.NORTH)
     mock_table.valid_position.assert_called_once_with(mock_placement)
     assert robot._position is mock_placement
 
@@ -39,10 +37,9 @@ def test_place_does_not_set_position_for_invalid_position_on_table(mocker):
     mock_table.valid_position.return_value = False
 
     robot = Robot(mock_table)
-    robot._orientations = {Direction.NORTH: "fake-orientation"}
     robot.place(1, 1, Direction.NORTH)
 
-    mock_position.assert_called_once_with(1, 1, "fake-orientation")
+    mock_position.assert_called_once_with(1, 1, Direction.NORTH)
     mock_table.valid_position.assert_called_once_with(mock_placement)
     assert robot._position is None
 
@@ -90,23 +87,21 @@ def test_report_calls_logger_with_position_if_robot_is_placed(mocker):
 
 def test_rotate_does_not_change_orientation_of_robot_if_not_placed(mocker):
     robot = Robot(mocker.Mock())
-    robot._position = mocker.Mock(orientation="fake-orientation")
+    robot._position = mocker.Mock(direction=Direction.NORTH)
     mocker.patch.object(robot, "_is_placed", return_value=False)
 
     robot.rotate(Turn.LEFT)
 
-    assert robot._position.orientation == "fake-orientation"
+    assert robot._position.direction == Direction.NORTH
 
 
 def test_rotate_changes_orientation_of_robot(mocker):
     robot = Robot(mocker.Mock())
-    robot._orientations = {"fake-key": "fake-value"}
-    robot._position = mocker.Mock()
-    robot._position.orientation.get_direction.return_value = "fake-key"
+    robot._position = Position(0, 0, Direction.NORTH)
 
     robot.rotate(Turn.LEFT)
 
-    assert robot._position.orientation == "fake-value"
+    assert robot._position.direction == Direction.WEST
 
 
 @pytest.mark.parametrize(
@@ -124,9 +119,7 @@ def test_move_changes_position_of_robot_to_correct_location_for_valid_new_positi
     robot = Robot(mocker.Mock())
     robot._table.valid_position.return_value = True
     initial_x, initial_y = initial_position
-    starting_position = Position(
-        initial_x, initial_y, mocker.Mock(direction=initial_direction)
-    )
+    starting_position = Position(initial_x, initial_y, initial_direction)
     robot._position = starting_position
 
     robot.move()
@@ -134,23 +127,21 @@ def test_move_changes_position_of_robot_to_correct_location_for_valid_new_positi
     # TODO: test if `valid_position` was actually called with the correct position
     robot._table.valid_position.assert_called_once()
     assert (robot._position.x, robot._position.y) == expected_position
-    assert robot._position.orientation.direction == expected_direction
+    assert robot._position.direction == expected_direction
 
 
 def test_move_does_not_move_robot_robot_for_invalid_new_position(mocker, caplog):
     robot = Robot(mocker.Mock())
     robot._table.valid_position.return_value = False
     initial_x, initial_y = 0, 0
-    starting_position = Position(
-        initial_x, initial_y, mocker.Mock(direction=Direction.SOUTH)
-    )
+    starting_position = Position(initial_x, initial_y, direction=Direction.SOUTH)
     robot._position = starting_position
 
     robot.move()
 
     assert robot._table.valid_position.called is True
     assert (robot._position.x, robot._position.y) == (initial_x, initial_y)
-    assert robot._position.orientation.direction == Direction.SOUTH
+    assert robot._position.direction == Direction.SOUTH
     assert "Preventing execution of MOVE command as it would cause "
     "the robot to fall off the table." in str(caplog.records)
 

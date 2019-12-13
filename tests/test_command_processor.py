@@ -1,10 +1,10 @@
 import logging
-from toy_robot_challenge.robot import Robot
 
 import pytest
 
 from toy_robot_challenge.command_processor import CommandProcessor
 from toy_robot_challenge.positioning import Direction, Turn
+from toy_robot_challenge.robot import Robot
 
 
 @pytest.fixture()
