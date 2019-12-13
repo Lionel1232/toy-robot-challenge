@@ -82,7 +82,7 @@ def test_report_calls_logger_with_position_if_robot_is_placed(mocker):
     robot._position = mock_position
     robot.report()
 
-    mock_logger.info.assert_called_once_with(mock_position)
+    mock_logger.info.assert_called_once_with(str(mock_position))
 
 
 def test_rotate_does_not_change_orientation_of_robot_if_not_placed(mocker):
