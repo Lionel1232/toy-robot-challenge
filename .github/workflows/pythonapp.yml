@@ -1,35 +1,47 @@
-name: Python application
+name: Run pytest, flake8, isort and coverage
 
 on: [push]
 
 jobs:
-  build:
+  build-and-test:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Set up Python 3.6
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.6
-    - name: Install dependencies
-      run: |
-        pip install tox
-    - name: Test with pytest
-      run: |
-        tox -e py36
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.7
-    - name: Test with pytest
-      run: |
-        tox -e py37
+    - name: Checkout toy-robot-challenge source code
+      uses: actions/checkout@v1
     - name: Set up Python 3.8
       uses: actions/setup-python@v1
       with:
-        python-version: 3.8
-    - name: Test with pytest
-      run: |
-        tox -e py38
+        python-version: "3.8.0"
+    - name: Install tox
+      run: pip install tox
+    - name: Run tests using tox
+      run: tox
+    - name: Run safety checks
+      run: tox -e safety
+    - name: Run bandit checks
+      run: tox -e bandit
+    - name: Upload code coverage report
+      uses: actions/upload-artifact@v1
+      with:
+        name: coverage-report
+        path: htmlcov
+    - name: Upload pytest report
+      uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: pytest-report
+        path: unittest-report
+    - name: Upload bandit report
+      uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: bandit-report
+        path: security-report/bandit-report.txt
+    - name: Upload safety report
+      uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: safety-report
+        path: security-report/safety-report.txt

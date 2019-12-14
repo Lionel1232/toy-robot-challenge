@@ -37,6 +37,8 @@ pip-delete-this-directory.txt
 
 # Unit test / coverage reports
 htmlcov/
+unittest-report/
+security-report/
 .tox/
 .coverage
 .coverage.*
@@ -72,7 +74,7 @@ ENV/
 .mypy_cache/
 
 # VS Code
-.vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
