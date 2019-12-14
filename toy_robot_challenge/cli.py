@@ -3,8 +3,7 @@ import sys
 
 import click
 
-from toy_robot_challenge.command_processor import CommandProcessor
-
+from .command_processor import CommandProcessor
 from .robot import Robot
 from .table import Table
 
@@ -21,7 +20,7 @@ logger.addHandler(handler)
 @click.option(
     "-v", "--verbosity", type=click.Choice(["OFF", "INFO", "DEBUG"]), default="INFO"
 )
-def main(input_file, verbosity):  # noqa
+def main(input_file, verbosity):
     logger.setLevel(verbosity)
     table = Table(5, 5)
     robot = Robot(table)
@@ -39,5 +38,5 @@ def main(input_file, verbosity):  # noqa
     return 0
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     sys.exit(main())
