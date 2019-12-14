@@ -37,7 +37,7 @@ class CommandProcessor:
                 return
 
             command_components = [
-                component.strip() for component in arguments[0].split(",")
+                component.upper().strip() for component in arguments[0].split(",")
             ]
 
             try:
