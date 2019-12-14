@@ -95,13 +95,17 @@ def test_rotate_does_not_change_orientation_of_robot_if_not_placed(mocker):
     assert robot._position.direction == Direction.NORTH
 
 
-def test_rotate_changes_orientation_of_robot(mocker):
+@pytest.mark.parametrize(
+    "turn, expected_direction",
+    [(Turn.LEFT, Direction.WEST), (Turn.RIGHT, Direction.EAST)],
+)
+def test_rotate_changes_orientation_of_robot(mocker, turn, expected_direction):
     robot = Robot(mocker.Mock())
     robot._position = Position(0, 0, Direction.NORTH)
 
-    robot.rotate(Turn.LEFT)
+    robot.rotate(turn)
 
-    assert robot._position.direction == Direction.WEST
+    assert robot._position.direction == expected_direction
 
 
 @pytest.mark.parametrize(

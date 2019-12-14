@@ -8,10 +8,10 @@ class Turn(Enum):
 
 
 class Direction(Enum):
-    NORTH = {Turn.LEFT: "WEST", Turn.RIGHT: "EAST"}
-    SOUTH = {Turn.LEFT: "EAST", Turn.RIGHT: "WEST"}
-    EAST = {Turn.LEFT: "NORTH", Turn.RIGHT: "SOUTH"}
-    WEST = {Turn.LEFT: "SOUTH", Turn.RIGHT: "NORTH"}
+    NORTH = 0
+    EAST = 1
+    SOUTH = 2
+    WEST = 3
 
     @property
     def dx(self):
@@ -21,23 +21,15 @@ class Direction(Enum):
     def dy(self):
         return 1 if self is Direction.NORTH else -1 if self is Direction.SOUTH else 0
 
+    @property
+    def left(self):
+        new_direction = (self.value - 1) % 4
+        return Direction(new_direction)
 
-class Orientation:
-    def __init__(
-        self,
-        direction: Direction,
-        left_direction: Direction,
-        right_direction: Direction,
-    ):
-        self.direction = direction
-        self._left = left_direction
-        self._right = right_direction
-
-    def get_direction(self, turn: Turn) -> Direction:
-        if turn == Turn.LEFT:
-            return self._left
-        else:
-            return self._right
+    @property
+    def right(self):
+        new_direction = (self.value + 1) % 4
+        return Direction(new_direction)
 
 
 @dataclass

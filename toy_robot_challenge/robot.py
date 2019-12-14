@@ -34,9 +34,10 @@ class Robot:
 
     @check_if_placed
     def rotate(self, turning_direction: Turn) -> None:
-        self._position.direction = Direction[
-            self._position.direction.value[turning_direction]
-        ]
+        if turning_direction is Turn.LEFT:
+            self._position.direction = self._position.direction.left
+        elif turning_direction is Turn.RIGHT:
+            self._position.direction = self._position.direction.right
 
     @check_if_placed
     def move(self) -> None:
