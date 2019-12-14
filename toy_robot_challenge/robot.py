@@ -45,7 +45,9 @@ class Robot:
         new_position.x += self._position.direction.dx
         new_position.y += self._position.direction.dy
 
-        assert new_position is not None
+        # unfortunately, this assert is required to stop the pyright linter from
+        # complaining as it does not detect that we have already checked if `new_position` is None
+        assert new_position is not None  # nosec
         if self._table.valid_position(new_position):
             self._position = new_position
         else:

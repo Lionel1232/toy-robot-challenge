@@ -29,3 +29,15 @@ jobs:
       with:
         name: pytest-report
         path: unittest-report
+    - name: Upload bandit report
+      uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: bandit-report
+        path: security-report/bandit-report.txt
+    - name: Upload safety report
+      uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: safety-report
+        path: security-report/safety-report.txt
