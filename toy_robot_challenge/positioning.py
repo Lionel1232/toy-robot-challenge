@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 from enum import Enum
 
@@ -14,20 +16,20 @@ class Direction(Enum):
     WEST = 3
 
     @property
-    def dx(self):
+    def dx(self) -> int:
         return 1 if self is Direction.EAST else -1 if self is Direction.WEST else 0
 
     @property
-    def dy(self):
+    def dy(self) -> int:
         return 1 if self is Direction.NORTH else -1 if self is Direction.SOUTH else 0
 
     @property
-    def left(self):
+    def left(self) -> Direction:
         new_direction = (self.value - 1) % 4
         return Direction(new_direction)
 
     @property
-    def right(self):
+    def right(self) -> Direction:
         new_direction = (self.value + 1) % 4
         return Direction(new_direction)
 
