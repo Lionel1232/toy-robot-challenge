@@ -2,7 +2,7 @@
 
 A Python application that simulates a toy robot moving around on a 5 x 5 table.
 
-## Installation
+## Installation 
 
 First, clone the project and navigate to the project root. 
 
