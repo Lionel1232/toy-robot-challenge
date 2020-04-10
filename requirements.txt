@@ -4,35 +4,34 @@
 #
 #    pip-compile
 #
-atomicwrites==1.3.0       # via pytest
+appdirs==1.4.3            # via virtualenv
 attrs==19.3.0             # via pytest
-click==7.0
-coverage==4.5.4           # via pytest-cov
+click==7.1.1
+coverage==5.0.4           # via pytest-cov
+distlib==0.3.0            # via virtualenv
 entrypoints==0.3          # via flake8
-filelock==3.0.12          # via tox
-flake8==3.7.8             # via pytest-flake8
-importlib-metadata==0.23  # via pytest
+filelock==3.0.12          # via tox, virtualenv
+flake8==3.7.9             # via pytest-flake8
 isort==4.3.21             # via pytest-isort
 mccabe==0.6.1             # via flake8
-more-itertools==7.2.0     # via pytest, zipp
-packaging==19.2           # via pytest, tox
+more-itertools==8.2.0     # via pytest
+packaging==20.3           # via pytest, tox
 pluggy==0.13.1            # via pytest, tox
-py==1.8.0                 # via pytest, tox
+py==1.8.1                 # via pytest, tox
 pycodestyle==2.5.0        # via flake8
 pyflakes==2.1.1           # via flake8
-pyparsing==2.4.5          # via packaging
+pyparsing==2.4.7          # via packaging
 pytest-cov==2.8.1
 pytest-flake8==1.0.4
 pytest-isort==0.3.1
-pytest-mock==1.12.1
-pytest==4.6.5
-six==1.13.0               # via packaging, pytest, tox
+pytest-mock==3.0.0
+pytest==5.4.1
+six==1.14.0               # via packaging, tox, virtualenv
 toml==0.10.0              # via tox
-tox==3.14.0
-virtualenv==16.7.8        # via tox
-wcwidth==0.1.7            # via pytest
-wheel==0.33.6
-zipp==0.6.0               # via importlib-metadata
+tox==3.14.6
+virtualenv==20.0.17       # via tox
+wcwidth==0.1.9            # via pytest
+wheel==0.34.2
 
 # The following packages are considered to be unsafe in a requirements file:
-# pip==19.3.1
+# pip==20.0.2
